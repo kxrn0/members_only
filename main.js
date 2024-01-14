@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const passport_config = require("./config/passport_config");
+const home = require("./routers/home");
 
 require("dotenv").config();
 
@@ -26,6 +27,8 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(`${__dirname}/public`));
 
+app.get("/", (req, res) => res.redirect("/home"));
+app.use("/home", home);
 
 mongoose
   .connect(process.env.DB)
