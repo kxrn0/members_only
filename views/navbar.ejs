@@ -17,17 +17,14 @@
       <a href="/auth/log-out">Log out</a>
     <% } %>
   <% } else { %>
-    <% if (url === "home") { %>
-        <a href="/auth/log-in">Log in</a>
-        <a href="/auth/sign-up">Sign up</a>
-      <% } else if (url === "post") { %>
-        <a href="/home/1">Home</a>
-        <a href="/auth/log-in">Log in</a>
-        <a href="/auth/sign-up">Sign up</a>     
-      <% } else if (url === "log-in") { %>
-        <a href="/auth/sign-up">Sign up</a>
-      <% } else { %>
-        <a href="/auth/log-in">Log in</a>
-      <% } %>
+    <% if (url !== "home") { %>
+      <a href="/home/1">Home</a>  
+    <% } %>
+    <% if (url !== "sign-up") { %>
+      <a href="/auth/sign-up">Sign up</a>  
+    <% } %>
+    <% if (url !== "log-in") { %>
+      <a href="/auth/log-in">Log in</a>  
+    <% } %>
   <% } %>
 </nav>

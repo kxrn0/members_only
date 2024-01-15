@@ -37,5 +37,6 @@ exports.get_homepage = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    res.render("error.ejs", { message: "Something went wrong!" });
   }
 };
