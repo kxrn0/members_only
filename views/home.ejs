@@ -22,13 +22,25 @@
       <% } %>
     </div>
     <div class="indices">
-      <a href="/home/1">first</a>
-      <a href="/home/<%= page - 1 %>" disabled="<%= page - 1 <= 0 %>">prev</a>
-      <% for (let index of indices) { %>
-      <a href="<%= `/home/${index}` %>"><%= index %></a>
+      <% if (page !== 1) { %>
+        <a href="/home/1">first</a>
       <% } %>
-      <a href="/home/<%= page + 1 %>" disabled="<%= page >= totalPages %>">next</a>
-      <a href="/home/<%= totalPages %>">last</a>
+      <% if (page !== 1) { %>
+        <a href="/home/<%= page - 1 %>">prev</a>
+      <% } %>
+      <% for (let index of indices) { %>
+        <% if (page !== index) { %>
+          <a href="/home/<%= index %>"><%= index %></a>
+        <% } else { %>
+          <p><%= index %></p>
+        <% } %>
+      <% } %>
+      <% if (page + 1 !== totalPages) { %>
+        <a href="/home/<%= page + 1 %>">next</a>
+      <% } %>
+      <% if (page !== totalPages) { %>
+        <a href="/home/<%= totalPages %>">last</a>
+      <% } %>
     </div>
   </body>
 </html>

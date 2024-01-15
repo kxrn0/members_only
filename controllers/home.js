@@ -14,7 +14,7 @@ exports.get_homepage = async (req, res) => {
     } else populations.push("author");
 
     const itemsPerPage = 3;
-    const page = req.params.page || 1;
+    const page = (req.params.page && Number(req.params.page)) || 1;
     const skip = (page - 1) * itemsPerPage;
     const posts = await Post.find({}, omissions)
       .skip(skip)
@@ -24,9 +24,17 @@ exports.get_homepage = async (req, res) => {
     const pagesPerSection = 5;
     const postCount = await Post.countDocuments();
     const totalPages = Math.ceil(postCount / itemsPerPage);
-    const indices = get_indices(totalPages, pagesPerSection, Number(page));
+    const indices = get_indices(totalPages, pagesPerSection, page);
 
-    res.render("home.ejs", { posts, user, indices, page, totalPages });
+    res.render("home.ejs", {
+      posts,
+      user,
+      indices,
+      page,
+      totalPages,
+      url: "home",
+      isPending: req.isPending,
+    });
   } catch (error) {
     console.log(error);
   }
