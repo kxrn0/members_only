@@ -16,11 +16,13 @@ exports.get_homepage = async (req, res) => {
     const itemsPerPage = 3;
     const page = (req.params.page && Number(req.params.page)) || 1;
     const skip = (page - 1) * itemsPerPage;
-    const posts = await Post.find({}, omissions)
-      .skip(skip)
-      .populate(...populations)
-      .sort({ createdAt: -1 })
-      .limit(itemsPerPage);
+    const posts = (
+      await Post.find({}, omissions)
+        .skip(skip)
+        .populate(...populations)
+        .sort({ createdAt: -1 })
+        .limit(itemsPerPage)
+    ).map((post) => ({ ...post._doc, body: post.body.substring(0, 500) }));
     const pagesPerSection = 5;
     const postCount = await Post.countDocuments();
     const totalPages = Math.ceil(postCount / itemsPerPage);

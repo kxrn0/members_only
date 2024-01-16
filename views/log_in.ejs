@@ -9,15 +9,7 @@
     <%- include("./navbar") %>
     <h1>Log in</h1>
     <form action="/auth/log-in" method="POST">
-      <label>
-        <span>Handle</span>
-        <input type="text" name="handle" required />
-      </label>
-      <label>
-        <span>Password</span>
-        <input type="password" name="password" required />
-      </label>
-      <button>Submit</button>
+      <%- include("./form") %>
     </form>
   </body>
 </html>

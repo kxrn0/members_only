@@ -9,19 +9,7 @@
     <%- include("./navbar") %>
     <h1>Sign up</h1>
     <form action="/auth/sign-up" method="POST">
-      <label>
-        <span>Name</span>
-        <input type="text" name="name" required />
-      </label>
-      <label>
-        <span>Handle</span>
-        <input type="text" name="handle" required />
-      </label>
-      <label>
-        <span>Password</span>
-        <input type="password" name="password" required />
-      </label>
-      <button>Submit</button>
+      <%- include("./form") %>
     </form>
   </body>
 </html>

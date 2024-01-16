@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members</title>
+  </head>
+  <body>
+    <%- include("./navbar") %>
+    <h1 class="title"><%= post.title %></h1>
+    <% if (post.author) { %>
+      <p class="author">by u/<%= post.author.username %></p>
+      <p class="date"><%= new Date(post.createdAt).toDateString() %></p>
+    <% } %>
+    <p class="body"><%= post.body %></p>
+  </body>
+</html>

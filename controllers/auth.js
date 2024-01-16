@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const validator = require("validator");
-const bcrypt = require("bcrypt");
 const passport = require("passport");
+const bcrypt = require("bcrypt");
 
 exports.get_log_in = (req, res) =>
   res.render("log_in", { url: "log-in", user: null });
@@ -16,13 +16,12 @@ exports.get_sign_up = (req, res) =>
 
 exports.post_sign_up = async (req, res) => {
   try {
-    const name = req.body?.name.trim();
-    const handle = req.body?.handle.trim();
+    const username = req.body?.username.trim();
     const password = req.body?.password.trim();
     const reg = /^\w{1,15}$/i;
     const errorConfig = { user: null, url: "error" };
 
-    if (!reg.test(handle))
+    if (!reg.test(username))
       return res.render("error.ejs", {
         ...errorConfig,
         message:
@@ -35,26 +34,34 @@ exports.post_sign_up = async (req, res) => {
         message: "Please use a stronger password",
       });
 
-    if (!name || !handle || !password)
+    if (!username || !password)
       return res.render("error.ejs", {
         ...errorConfig,
         message: "Please don't leave any field empty!",
       });
 
-    const existing = await User.findOne({ handle });
+    const existing = await User.findOne({ username });
 
     if (existing)
       return res.render("error.ejs", {
         ...errorConfig,
-        message: "Please use a different handle!",
+        message: "Please use a different username!",
       });
 
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
-    const user = new User({ name, handle, password: hash });
+    const user = new User({ username, password: hash });
 
     await user.save();
 
     res.redirect("/auth/log-in");
   } catch (error) {}
 };
+
+exports.get_log_out = (req, res) =>
+  req.logout((error) => {
+    if (error)
+      return res.render("error.ejs", { message: "Something went wrong!" });
+
+    res.redirect("/home/1");
+  });

@@ -6,8 +6,9 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const passport_config = require("./config/passport_config");
-const home = require("./routers/home");
 const auth = require("./routers/auth");
+const post = require("./routers/post");
+const home = require("./routers/home");
 const error = require("./routers/error");
 
 passport_config(passport);
@@ -29,6 +30,7 @@ app.use(express.static(`${__dirname}/public`));
 
 app.get("/", (req, res) => res.redirect("/home"));
 app.use("/auth", auth);
+app.use("/post", post);
 app.use("/home", home);
 app.use("/error", error);
 
