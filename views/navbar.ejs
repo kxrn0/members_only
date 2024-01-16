@@ -7,14 +7,14 @@
       <% } %>
     <% } else { %>
         <% if (url !== "requests") { %>
-          <a href="/requests">Requests</a>
+          <a href="/requests"class="<%= isPending ? 'pending' : '' %>">Requests</a>
         <% } %>
     <% } %>
     <% if (url !== "home") { %>
       <a href="/home/1">Home</a>
     <% } %>
     <% if (url !== "new_post") { %>
-      <a href="/new-post">New Post</a>
+      <a href="/post/new-post">New Post</a>
     <% } %>
     <% if (url !== "profile") { %>
       <a href="<%= `/profile/${user.username}` %>">(You)</a>

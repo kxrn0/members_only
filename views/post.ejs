@@ -9,8 +9,12 @@
     <%- include("./navbar") %>
     <h1 class="title"><%= post.title %></h1>
     <% if (post.author) { %>
-      <p class="author">by u/<%= post.author.username %></p>
+      <a href="/profile/<%= post.author.username %>" class="author">by u/<%= post.author.username %></a>
       <p class="date"><%= new Date(post.createdAt).toDateString() %></p>
+      <% if (post.isOwnPost) { %>
+        <a href="/post/edit/<%= post._id %>">Edit</a>
+        <a href="/post/delete/<%= post._id %>">Delete</a>
+      <% } %>
     <% } %>
     <p class="body"><%= post.body %></p>
   </body>

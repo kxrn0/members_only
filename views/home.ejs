@@ -11,7 +11,7 @@
       <% for (let post of posts) { %>
       <div class="post">
         <a href="<%= `/post/${post._id}` %>" class="title"><%= post.title %></a>
-        <% if (user && user?.level !== "basic") { %>
+        <% if (user && (user.level !== "basic")) { %>
         <span class="author">@<%= post.author.username %></span>
         <span class="date"
           ><%= (new Date(post.createdAt)).toDateString() %></span

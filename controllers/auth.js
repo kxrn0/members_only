@@ -19,24 +19,23 @@ exports.post_sign_up = async (req, res) => {
     const username = req.body?.username.trim();
     const password = req.body?.password.trim();
     const reg = /^\w{1,15}$/i;
-    const errorConfig = { user: null, url: "error" };
 
     if (!reg.test(username))
       return res.render("error.ejs", {
-        ...errorConfig,
+        ...res.locals.errorConfig,
         message:
           "Please only include alphanumeric characters (a-z, 0-9, _) in your handle!",
       });
 
     if (!validator.isStrongPassword(password))
       return res.render("error.ejs", {
-        ...errorConfig,
+        ...res.locals.errorConfig,
         message: "Please use a stronger password",
       });
 
     if (!username || !password)
       return res.render("error.ejs", {
-        ...errorConfig,
+        ...res.locals.errorConfig,
         message: "Please don't leave any field empty!",
       });
 
@@ -44,7 +43,7 @@ exports.post_sign_up = async (req, res) => {
 
     if (existing)
       return res.render("error.ejs", {
-        ...errorConfig,
+        ...res.locals.errorConfig,
         message: "Please use a different username!",
       });
 
@@ -55,13 +54,23 @@ exports.post_sign_up = async (req, res) => {
     await user.save();
 
     res.redirect("/auth/log-in");
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    
+    res.redirect("/error", {
+      message: "Something went wrong!",
+      ...res.locals.errorConfig,
+    });
+  }
 };
 
 exports.get_log_out = (req, res) =>
   req.logout((error) => {
     if (error)
-      return res.render("error.ejs", { message: "Something went wrong!" });
+      return res.render("error.ejs", {
+        message: "Something went wrong!",
+        ...res.locals.errorConfig,
+      });
 
     res.redirect("/home/1");
   });

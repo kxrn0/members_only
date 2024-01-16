@@ -3,4 +3,5 @@ exports.get_error = (req, res) =>
     message: "Something went wrong!",
     user: null,
     url: "error",
+    isPending: req.isPending,
   });
