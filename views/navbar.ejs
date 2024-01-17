@@ -1,14 +1,8 @@
-
+<link rel="stylesheet" href="/styles/navbar.css">
 <nav>
   <% if (user) { %>
-    <% if (user.level !== "admin") { %>
-      <% if (url !== "upgrade") { %>
-        <a href="/upgrade" class="<%= isPending ? 'pending' : '' %>">Upgrade</a>  
-      <% } %>
-    <% } else { %>
-        <% if (url !== "requests") { %>
-          <a href="/requests"class="<%= isPending ? 'pending' : '' %>">Requests</a>
-        <% } %>
+    <% if (url !== "request") { %>
+      <a href="/request" class="<%= isPending ? 'pending' : '' %>"><%= user.level !== "admin" ? "Upgrade" : "Requests" %></a>  
     <% } %>
     <% if (url !== "home") { %>
       <a href="/home/1">Home</a>

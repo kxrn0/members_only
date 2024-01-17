@@ -9,6 +9,7 @@ const passport_config = require("./config/passport_config");
 const auth = require("./routers/auth");
 const post = require("./routers/post");
 const user = require("./routers/user");
+const request = require("./routers/request");
 const home = require("./routers/home");
 const error = require("./routers/error");
 const check_request_status = require("./middleware/check_request_status");
@@ -37,6 +38,7 @@ app.use(set_locals);
 app.use("/auth", auth);
 app.use("/post", post);
 app.use("/user", user);
+app.use("/request", request);
 app.use("/home", home);
 app.use("/error", error);
 

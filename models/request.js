@@ -11,6 +11,7 @@ const requestSchema = mongoose.Schema({
     required: true,
   },
   requester: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  isRead: { type: Boolean, default: true },
 });
 
 module.exports = mongoose.model("Request", requestSchema);

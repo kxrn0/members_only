@@ -13,7 +13,7 @@ module.exports = async function check_request_status(req, res, next) {
       isPending = await Request.findOne({ status: "pending" });
     else
       isPending = await Request.findOne({
-        status: "pending",
+        isRead: false,
         requester: user._id,
       });
 

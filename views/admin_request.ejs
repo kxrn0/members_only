@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members</title>
+  </head>
+  <body>
+    <%- include("./navbar") %>
+    <h1>Requests</h1>
+    <% if (requests.length) { %>
+      <% for (let request of requests) { %>
+        <div>
+          <h3>upgrade request</h3>
+          <p>type: <%= request.type %></p>
+          <p>user: <a href="/user/<%= request.requester.username %>">u/<%= request.requester.username %></a></p>
+          <a href="/request/aprove/<%= request._id %>">approve</a>
+          <a href="/request/reject/<%= request._id %>">reject</a>
+        </div>  
+      <% } %>
+    <% } else { %>
+      <p>There's nothing here today.</p>
+    <% } %>
+  </body>
+</html>

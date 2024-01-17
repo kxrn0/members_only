@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Members</title>
+</head>
+<body>
+  <%- include("./navbar") %>
+  <% if (unanswered) { %>
+    <div>
+      <h3>Upgrade Request</h3>
+      <p>type: <%= unanswered.type %></p>
+      <p>status: <%= unanswered.status %></p>
+    </div>
+  <% } else { %>
+    <a href="/request/upgrade">Request <%= 
+        (() => {
+          if (user.level === "basic")
+            return "pro";
+          return "admin";
+        })()
+      %> status</a>
+    <% if (unreadAndAnswered) { %>
+      <div>
+        <h3>Upgrade Request</h3>
+        <p>type: <%= unreadAndAnswered.type %></p>
+        <p>status: <%= unreadAndAnswered.status %></p>
+      </div>
+    <% } %>
+  <% } %>
+  <% if (previous.length) { %>
+    <h2>Previous requests</h2>
+    <% for (let request of previous) { %>
+      <div>
+        <h3>Upgrade Request</h3>
+        <p>type: <%= request.type %></p>
+        <p>status: <%= request.status %></p>
+      </div>
+    <% } %>
+  <% } %>
+</body>
+</html>
