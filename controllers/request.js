@@ -1,6 +1,5 @@
 const Request = require("../models/request");
 const User = require("../models/user");
-const mongoose = require("mongoose");
 
 exports.get_request = async (req, res) => {
   try {
