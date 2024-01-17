@@ -15,7 +15,7 @@
   <% if (page + 1 <= totalPages) { %>
     <a href="/<%= root %>/<%= page + 1 %>">next</a>
   <% } %>
-  <% if (page !== totalPages) { %>
+  <% if (totalPages && page !== totalPages) { %>
     <a href="/<%= root %>/<%= totalPages %>">last</a>
   <% } %>
 </div>
