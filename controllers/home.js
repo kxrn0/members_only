@@ -30,18 +30,15 @@ exports.get_homepage = async (req, res) => {
 
     res.render("home.ejs", {
       posts,
-      user,
       indices,
       page,
       totalPages,
       url: "home",
-      isPending: req.isPending,
     });
   } catch (error) {
     console.log(error);
     res.render("error.ejs", {
       message: "Something went wrong!",
-      ...res.locals.errorConfig,
     });
   }
 };

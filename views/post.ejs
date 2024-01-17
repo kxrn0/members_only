@@ -13,6 +13,8 @@
       <p class="date"><%= new Date(post.createdAt).toDateString() %></p>
       <% if (post.isOwnPost) { %>
         <a href="/post/edit/<%= post._id %>">Edit</a>
+      <% } %>
+      <% if (post.isOwnPost || (user?.level === "admin")) { %>
         <a href="/post/delete/<%= post._id %>">Delete</a>
       <% } %>
     <% } %>

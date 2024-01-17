@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members</title>
+  </head>
+  <body>
+    <%- include("./navbar") %>
+    <form action="/post/edit/<%= id %>" method="POST">
+      <input type="text" name="title" value="<%= title %>" />
+      <textarea name="body"><%= body %></textarea>
+      <button>Save</button>
+    </form>
+  </body>
+</html>

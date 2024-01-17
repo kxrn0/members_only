@@ -22,20 +22,17 @@ exports.post_sign_up = async (req, res) => {
 
     if (!reg.test(username))
       return res.render("error.ejs", {
-        ...res.locals.errorConfig,
         message:
-          "Please only include alphanumeric characters (a-z, 0-9, _) in your handle!",
+          "Please only include alphanumeric characters (a-z, 0-9, _) in your name!",
       });
 
     if (!validator.isStrongPassword(password))
       return res.render("error.ejs", {
-        ...res.locals.errorConfig,
         message: "Please use a stronger password",
       });
 
     if (!username || !password)
       return res.render("error.ejs", {
-        ...res.locals.errorConfig,
         message: "Please don't leave any field empty!",
       });
 
@@ -43,7 +40,6 @@ exports.post_sign_up = async (req, res) => {
 
     if (existing)
       return res.render("error.ejs", {
-        ...res.locals.errorConfig,
         message: "Please use a different username!",
       });
 
@@ -56,10 +52,9 @@ exports.post_sign_up = async (req, res) => {
     res.redirect("/auth/log-in");
   } catch (error) {
     console.log(error);
-    
+
     res.redirect("/error", {
       message: "Something went wrong!",
-      ...res.locals.errorConfig,
     });
   }
 };
@@ -69,7 +64,6 @@ exports.get_log_out = (req, res) =>
     if (error)
       return res.render("error.ejs", {
         message: "Something went wrong!",
-        ...res.locals.errorConfig,
       });
 
     res.redirect("/home/1");

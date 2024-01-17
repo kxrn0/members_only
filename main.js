@@ -11,7 +11,7 @@ const post = require("./routers/post");
 const home = require("./routers/home");
 const error = require("./routers/error");
 const check_request_status = require("./middleware/check_request_status");
-const error_config = require("./middleware/error_config");
+const set_locals = require("./middleware/set_locals")
 
 passport_config(passport);
 
@@ -32,7 +32,7 @@ app.use(express.static(`${__dirname}/public`));
 
 app.get("/", (req, res) => res.redirect("/home"));
 app.use(check_request_status);
-app.use(error_config);
+app.use(set_locals);
 app.use("/auth", auth);
 app.use("/post", post);
 app.use("/home", home);
