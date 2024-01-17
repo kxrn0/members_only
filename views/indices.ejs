@@ -1,0 +1,21 @@
+<div>
+  <% if (page !== 1) { %>
+    <a href="/<%= root %>/1">first</a>
+  <% } %>
+  <% if (page !== 1) { %>
+    <a href="/<%= root %>/<%= page - 1 %>">prev</a>
+  <% } %>
+  <% for (let index of indices) { %>
+    <% if (page !== index) { %>
+      <a href="/<%= root %>/<%= index %>"><%= index %></a>
+    <% } else { %>
+      <p><%= index %></p>
+    <% } %>
+  <% } %>
+  <% if (page + 1 <= totalPages) { %>
+    <a href="/<%= root %>/<%= page + 1 %>">next</a>
+  <% } %>
+  <% if (page !== totalPages) { %>
+    <a href="/<%= root %>/<%= totalPages %>">last</a>
+  <% } %>
+</div>

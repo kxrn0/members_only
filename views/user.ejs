@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members</title>
+  </head>
+  <body>
+    <%- include("./navbar") %>
+    <h1>u/<%= author.username %></h1>
+    <h2>level: <%= author.level %></h2>
+    <p><%= postCount %> posts</p>
+    <% for (let post of posts) { %>
+    <div>
+      <a href="/post/<%= post._id %>"><%= post.title %></a>
+      <span>u/<%= author.username %></a>
+      <span><%= (new Date(post.createdAt)).toDateString() %></span>
+      <p><%= post.body %></p>
+    </div>
+    <% } %>
+    <%- include("./indices") %>
+  </body>
+</html>

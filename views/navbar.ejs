@@ -16,8 +16,8 @@
     <% if (url !== "new_post") { %>
       <a href="/post/new-post">New Post</a>
     <% } %>
-    <% if (url !== "profile") { %>
-      <a href="<%= `/profile/${user.username}` %>">(You)</a>
+    <% if (url !== "user" || author?.username !== user.username) { %>
+      <a href="<%= `/user/${user.username}` %>">(You)</a>
     <% } %>
     <a href="/auth/log-out">Log out</a>
   <% } else { %>

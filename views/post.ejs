@@ -7,10 +7,10 @@
   </head>
   <body>
     <%- include("./navbar") %>
-    <h1 class="title"><%= post.title %></h1>
+    <h1><%= post.title %></h1>
     <% if (post.author) { %>
-      <a href="/profile/<%= post.author.username %>" class="author">by u/<%= post.author.username %></a>
-      <p class="date"><%= new Date(post.createdAt).toDateString() %></p>
+      <a href="/user/<%= post.author.username %>">by u/<%= post.author.username %></a>
+      <p><%= new Date(post.createdAt).toDateString() %></p>
       <% if (post.isOwnPost) { %>
         <a href="/post/edit/<%= post._id %>">Edit</a>
       <% } %>
@@ -18,6 +18,6 @@
         <a href="/post/delete/<%= post._id %>">Delete</a>
       <% } %>
     <% } %>
-    <p class="body"><%= post.body %></p>
+    <p><%= post.body %></p>
   </body>
 </html>

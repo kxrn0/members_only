@@ -4,6 +4,7 @@ module.exports = function (req, res, next) {
     user: req.user,
     url: "error",
     isPending: req.isPending,
+    author: null,
   };
 
   next();

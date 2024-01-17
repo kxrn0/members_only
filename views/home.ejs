@@ -7,40 +7,18 @@
   </head>
   <body>
     <%- include("./navbar") %>
-    <div class="posts">
       <% for (let post of posts) { %>
-      <div class="post">
-        <a href="<%= `/post/${post._id}` %>" class="title"><%= post.title %></a>
+      <div>
+        <a href="<%= `/post/${post._id}` %>"><%= post.title %></a>
         <% if (user && (user.level !== "basic")) { %>
-        <span class="author">@<%= post.author.username %></span>
-        <span class="date"
+        <a href="/user/<%= post.author.username %>">u/<%= post.author.username %></a>
+        <span
           ><%= (new Date(post.createdAt)).toDateString() %></span
         >
         <% } %>
-        <p class="body"><%= post.body %></p>
+        <p><%= post.body %></p>
       </div>
       <% } %>
-    </div>
-    <div class="indices">
-      <% if (page !== 1) { %>
-        <a href="/home/1">first</a>
-      <% } %>
-      <% if (page !== 1) { %>
-        <a href="/home/<%= page - 1 %>">prev</a>
-      <% } %>
-      <% for (let index of indices) { %>
-        <% if (page !== index) { %>
-          <a href="/home/<%= index %>"><%= index %></a>
-        <% } else { %>
-          <p><%= index %></p>
-        <% } %>
-      <% } %>
-      <% if (page + 1 !== totalPages) { %>
-        <a href="/home/<%= page + 1 %>">next</a>
-      <% } %>
-      <% if (page !== totalPages) { %>
-        <a href="/home/<%= totalPages %>">last</a>
-      <% } %>
-    </div>
+      <%- include("./indices") %>
   </body>
 </html>
